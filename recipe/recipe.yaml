@@ -1,6 +1,6 @@
 context:
   name: pispy-client
-  version: "0.9.0"
+  version: "1.0.0"
   python_min: "3.10"
 
 package:
@@ -9,15 +9,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pispy_client/pispy_client-${{ version }}.tar.gz
-  sha256: dff96b598412c6d051a173550a532c39180da42b389376ac38e0a517584a1faa
+  sha256: 6f3f8d0554affa168e469e8209354934883a1ee317d5bcf482d7162a58958c58
 
 build:
   noarch: python
   script: python -m pip install . -vv
   number: 0
   python:
-    entry_points:
-      pispy = pispy.__main__:run
+    entry_points: pispy = pispy.__main__:run
 
 requirements:
   host:
@@ -33,11 +32,11 @@ requirements:
 tests:
   - python:
       imports:
-      - pispy
+        - pispy
       pip_check: true
       python_version: ${{ python_min }}.*
   - script:
-    - pispy --help
+      - pispy --help
     requirements:
       run:
         - python ${{ python_min }}.*
